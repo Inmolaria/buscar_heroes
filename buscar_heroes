@@ -1,0 +1,28 @@
+--codigo en el componente buscar
+<div class="row">
+   <div *ngFor="let heroe of heroes; let i = index" class="col">
+      <div *ngIf="heroe != null" class="card" style="width: 18rem">
+         <img [src]="heroe.img" class="card-img-top" alt="spiderman" />
+         <div class="card-body">
+            <h5 class="card-title">{{ heroe.nombre }}</h5>
+            <p class="card-text">{{ heroe.bio }}</p>
+            <a (click)="verHeroe(i)" class="btn btn-danger">Ver más</a>
+            <p class="card-text">
+               <small class="text-body-secondary">Actualizado hace 3 minutos</small>
+            </p>
+         </div>
+      </div>
+   </div>
+</div>
+--codigo para el apartado visual del buscar
+  <form class="d-flex" role="search">
+            <input id="buscar" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="false"/>
+            <button (click)="buscarHeroe()" class="btn btn-outline-success" type="submit">
+               Buscar
+            </button>
+         </form>
+--buscar heroe
+buscarHeroe() {
+    let txt = (document.getElementById("buscar") as HTMLInputElement).value;
+    this.router.navigate(['/search', txt]);
+  }
